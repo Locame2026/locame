@@ -5,7 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetchRestaurantsWithMenus, fetchReviews, recordVisit } from '../actions';
-import CheckoutContainer from '@/components/payment/CheckoutForm';
+import CheckoutContainer from '@/components/payment/PaymentForm';
 import { GeolocationWrapper, Coordinates } from '@/lib/geolocation.wrapper';
 import { MapPin, Navigation, Info, Home } from 'lucide-react';
 import { useRouter } from 'next/navigation';
