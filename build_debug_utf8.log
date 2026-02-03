@@ -1,0 +1,58 @@
+﻿
+> locame@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.0
+   - Environments: .env.local, .env.production, .env
+
+   Creating an optimized production build ...
+node.exe : Failed 
+to compile.
+En línea: 1 
+Carácter: 1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Fail   
+ ed to compile.:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+
+./node_modules/postg
+res/src/connection.j
+s
+Module not found: 
+Can't resolve 
+'perf_hooks'
+
+https://nextjs.org/d
+ocs/messages/module-
+not-found
+
+Import trace for 
+requested module:
+./node_modules/postg
+res/src/index.js
+./src/lib/db.ts
+./src/app/actions/lo
+cation-actions.ts
+./src/components/map
+/LocationPicker.tsx
+./src/app/restaurant
+/dashboard/page.tsx
+
+
+> Build failed 
+because of webpack 
+errors

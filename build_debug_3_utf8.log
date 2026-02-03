@@ -1,0 +1,129 @@
+﻿
+> locame@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.0
+   - Environments: .env.local, .env.production, .env
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/14) ...
+   Generating static pages (3/14) 
+   Generating static pages (6/14) 
+node.exe : Error 
+occurred 
+prerendering page "/
+restaurant/dashboard
+". Read more: https:
+//nextjs.org/docs/me
+ssages/prerender-err
+or
+En línea: 1 
+Carácter: 1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: (Erro   
+ r occurred ...p    
+rerender-error:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+ReferenceError: 
+window is not 
+defined
+    at C:\Users\psol
+a\OneDrive\Documento
+s\AGENTES ANTIGRAVIT
+Y\LOCAME\.next\serve
+r\app\restaurant\das
+hboard\page.js:135:2
+492
+    at 95077 (C:\Use
+rs\psola\OneDrive\Do
+cumentos\AGENTES ANT
+IGRAVITY\LOCAME\.nex
+t\server\app\restaur
+ant\dashboard\page.j
+s:135:148963)
+    at t (C:\Users\p
+sola\OneDrive\Docume
+ntos\AGENTES ANTIGRA
+VITY\LOCAME\.next\se
+rver\webpack-runtime
+.js:1:128)
+    at 53471 (C:\Use
+rs\psola\OneDrive\Do
+cumentos\AGENTES ANT
+IGRAVITY\LOCAME\.nex
+t\server\app\restaur
+ant\dashboard\page.j
+s:135:160634)
+    at Object.t [as 
+require] (C:\Users\p
+sola\OneDrive\Docume
+ntos\AGENTES ANTIGRA
+VITY\LOCAME\.next\se
+rver\webpack-runtime
+.js:1:128)
+    at require (C:\U
+sers\psola\OneDrive\
+Documentos\AGENTES A
+NTIGRAVITY\LOCAME\no
+de_modules\next\dist
+\compiled\next-serve
+r\app-page.runtime.p
+rod.js:131:7946)
+    at u (C:\Users\p
+sola\OneDrive\Docume
+ntos\AGENTES ANTIGRA
+VITY\LOCAME\node_mod
+ules\next\dist\compi
+led\next-server\app-
+page.runtime.prod.js
+:36:646)
+    at F (C:\Users\p
+sola\OneDrive\Docume
+ntos\AGENTES ANTIGRA
+VITY\LOCAME\node_mod
+ules\next\dist\compi
+led\next-server\app-
+page.runtime.prod.js
+:36:10477)
+    at W (C:\Users\p
+sola\OneDrive\Docume
+ntos\AGENTES ANTIGRA
+VITY\LOCAME\node_mod
+ules\next\dist\compi
+led\next-server\app-
+page.runtime.prod.js
+:36:13033)
+    at C:\Users\psol
+a\OneDrive\Documento
+s\AGENTES ANTIGRAVIT
+Y\LOCAME\node_module
+s\next\dist\compiled
+\next-server\app-pag
+e.runtime.prod.js:36
+:15283
+Export encountered 
+an error on /restaur
+ant/dashboard/page: 
+/restaurant/dashboar
+d, exiting the 
+build.
+ Ô¿» Static worker 
+exited with code: 1 
+and signal: null
