@@ -22,6 +22,13 @@ async function ensureAdmin() {
 export async function deleteUser(userId: string) {
     try {
         await ensureAdmin();
+
+        // Check if user has a restaurant and delete it
+        const [user] = await db.query`SELECT restaurant_id FROM user_profiles WHERE id = ${userId}`;
+        if (user?.restaurant_id) {
+            await db.query`DELETE FROM restaurants WHERE id = ${user.restaurant_id}`;
+        }
+
         await db.query`DELETE FROM user_profiles WHERE id = ${userId}`;
         revalidatePath('/admin/users');
         return { success: true };
@@ -83,6 +90,18 @@ export async function toggleRestaurantPremium(restaurantId: string, isPremium: b
         return { success: true };
     } catch (error: any) {
         console.error('ADMIN_ACTION_ERROR: toggleRestaurantPremium failed:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+export async function deleteRestaurant(restaurantId: string) {
+    try {
+        await ensureAdmin();
+        await db.query`DELETE FROM restaurants WHERE id = ${restaurantId}`;
+        revalidatePath('/admin/users');
+        return { success: true };
+    } catch (error: any) {
+        console.error('ADMIN_ACTION_ERROR: deleteRestaurant failed:', error);
         return { success: false, error: error.message };
     }
 }

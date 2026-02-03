@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { getAllUsers, updateUserRole, handleLogout } from '../../auth/actions';
 import {
     deleteUser, resetUserPassword, getAllReviews, deleteReview,
-    getAllRestaurants, toggleRestaurantPremium, getAllCompanies,
+    getAllRestaurants, toggleRestaurantPremium, deleteRestaurant, getAllCompanies,
     updateCompanyBalance, deleteCompany, getGlobalB2BReport
 } from '../../actions/admin-actions';
 import { Users, Store, MessageSquare, Briefcase, BarChart3, Trash2, Key, Star } from 'lucide-react';
@@ -206,6 +206,18 @@ export default function AdminUsersPage() {
                                                     className={r.is_premium ? 'btn-outline danger' : 'btn-outline success'}
                                                 >
                                                     {r.is_premium ? 'Quitar Premium' : 'Hacer Premium'}
+                                                </button>
+                                                <button
+                                                    onClick={async () => {
+                                                        if (confirm(`¿Eliminar definitivamente el restaurante "${r.name}"?`)) {
+                                                            await deleteRestaurant(r.id);
+                                                            fetchData('restaurants');
+                                                        }
+                                                    }}
+                                                    className="btn-outline danger"
+                                                    style={{ marginTop: '8px', border: '1px solid #fee2e2', background: '#fff', color: '#ef4444' }}
+                                                >
+                                                    Eliminar
                                                 </button>
                                             </div>
                                         </div>
