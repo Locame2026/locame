@@ -1,5 +1,4 @@
 import { SignJWT, jwtVerify } from 'jose';
-import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 
 const SECRET_KEY = process.env.AUTH_SECRET || 'a-very-secret-key-that-should-be-in-env';
@@ -10,15 +9,6 @@ const key = new TextEncoder().encode(SECRET_KEY);
  * This file encapsulates all security-related logic, making the rest of the app 
  * "blind" to the underlying implementation of JWT or Hashing.
  */
-
-export async function hashPassword(password: string): Promise<string> {
-    const salt = await bcrypt.genSalt(10);
-    return bcrypt.hash(password, salt);
-}
-
-export async function comparePassword(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash);
-}
 
 export async function encrypt(payload: any) {
     return await new SignJWT(payload)

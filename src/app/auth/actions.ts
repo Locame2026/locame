@@ -3,7 +3,8 @@
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { hashPassword, comparePassword, login, logout } from '@/lib/auth';
+import { login, logout } from '@/lib/auth';
+import { hashPassword, comparePassword } from '@/lib/password';
 import { getAppSession } from '@/lib/auth.wrapper';
 import { sendPasswordResetEmail } from '@/lib/mail';
 

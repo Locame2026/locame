@@ -1,0 +1,2 @@
+test-auth.ts(1,10): error TS2305: Module '"./src/lib/auth"' has no exported member 'hashPassword'.
+test-auth.ts(1,24): error TS2305: Module '"./src/lib/auth"' has no exported member 'comparePassword'.
