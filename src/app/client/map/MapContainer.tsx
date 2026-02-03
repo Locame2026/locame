@@ -7,7 +7,8 @@ import 'leaflet/dist/leaflet.css';
 import { fetchRestaurantsWithMenus, fetchReviews, recordVisit } from '../actions';
 import CheckoutContainer from '@/components/payment/CheckoutForm';
 import { GeolocationWrapper, Coordinates } from '@/lib/geolocation.wrapper';
-import { MapPin, Navigation, Info } from 'lucide-react';
+import { MapPin, Navigation, Info, Home } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import ReviewForm from '@/components/reviews/ReviewForm';
 
 // Fix for default marker icons in Leaflet with Next.js
@@ -27,6 +28,7 @@ export default function ClientMap() {
     const [showCheckout, setShowCheckout] = useState(false);
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [userLocation, setUserLocation] = useState<Coordinates | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const load = async () => {
@@ -72,7 +74,12 @@ export default function ClientMap() {
             <div className="map-sidebar glass">
                 {selectedRest ? (
                     <div className="rest-details">
-                        <button className="back-to-list" onClick={() => setSelectedId(null)}>← Volver al mapa</button>
+                        <div className="nav-top">
+                            <button className="back-link" onClick={() => setSelectedId(null)}>← Volver al mapa</button>
+                            <button className="dash-link" onClick={() => router.push('/client/dashboard')}>
+                                <Home size={16} /> Dashboard
+                            </button>
+                        </div>
                         <header>
                             <h2 className="brand-font">{selectedRest.name}</h2>
                             <div className="status-row">
@@ -162,7 +169,12 @@ export default function ClientMap() {
                     </div>
                 ) : (
                     <div className="welcome-sidebar">
-                        <h2 className="brand-font">Explora Menús</h2>
+                        <div className="sidebar-header">
+                            <h2 className="brand-font">Explora Menús</h2>
+                            <button className="btn-dash-mini" onClick={() => router.push('/client/dashboard')}>
+                                <Home size={14} /> Mi Panel
+                            </button>
+                        </div>
                         <p>Selecciona un restaurante en el mapa para ver sus platos de hoy y lo que dicen de él.</p>
                         <div className="rest-list">
                             {restaurants.map(r => {
@@ -275,6 +287,14 @@ export default function ClientMap() {
                 }
 
                 .back-to-list { background: none; border: none; color: var(--primary); font-weight: 800; cursor: pointer; margin-bottom: 16px; padding: 0; }
+                
+                .nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+                .dash-link, .btn-dash-mini { display: flex; align-items: center; gap: 6px; background: white; border: 1px solid var(--glass-border); padding: 6px 12px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+                .dash-link:hover, .btn-dash-mini:hover { background: var(--secondary); border-color: var(--primary); color: var(--primary); }
+                .back-link { background: none; border: none; color: #666; font-size: 0.9rem; cursor: pointer; font-weight: 500; }
+                .back-link:hover { color: var(--primary); }
+                
+                .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
                 
                 .checkout-overlay {
                     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
