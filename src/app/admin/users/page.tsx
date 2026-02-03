@@ -278,6 +278,89 @@ export default function AdminUsersPage() {
                     )}
                 </div>
             </main>
+            <style jsx>{`
+                .admin-container { display: flex; min-height: 100vh; background: #f8fafc; }
+                .admin-sidebar { width: 260px; background: white; border-right: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; padding: 24px; position: fixed; height: 100vh; top: 0; left: 0; z-index: 10; }
+                .admin-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; font-weight: 700; font-size: 1.2rem; color: var(--text-main); }
+                .admin-nav { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+                .admin-nav button { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: none; background: transparent; color: var(--text-dim); border-radius: 12px; cursor: pointer; font-weight: 600; text-align: left; transition: all 0.2s; }
+                .admin-nav button:hover { background: var(--secondary); color: var(--text-main); }
+                .admin-nav button.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3); }
+                
+                .admin-logout { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 16px; }
+                .logout-btn { width: 100%; padding: 12px; border: 1px solid #fee2e2; background: #fef2f2; color: #dc2626; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+                .logout-btn:hover { background: #fee2e2; }
+
+                .admin-content { flex: 1; margin-left: 260px; padding: 32px 48px; }
+                .admin-header { margin-bottom: 32px; }
+                .admin-header h1 { font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.02em; }
+
+                .admin-view-area { background: white; border-radius: 24px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); min-height: 600px; border: 1px solid rgba(0,0,0,0.05); }
+
+                .admin-table { width: 100%; border-collapse: collapse; }
+                .admin-table th { text-align: left; padding: 16px; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #eee; }
+                .admin-table td { padding: 16px; border-bottom: 1px solid #f9fafb; color: var(--text-main); font-size: 0.95rem; vertical-align: middle; }
+                .admin-table tr:last-child td { border-bottom: none; }
+                .admin-table tr:hover td { background: #fdfdfd; }
+
+                .role-select { padding: 8px 12px; border-radius: 8px; border: 1px solid #e5e7eb; background: white; font-size: 0.9rem; color: var(--text-main); cursor: pointer; outline: none; }
+                .role-select:focus { border-color: var(--primary); }
+
+                .actions-cell { display: flex; gap: 8px; }
+                .btn-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: none; background: #f3f4f6; color: var(--text-dim); cursor: pointer; transition: 0.2s; }
+                .btn-icon:hover { background: #e5e7eb; color: var(--text-main); }
+                .btn-icon.danger { background: #fef2f2; color: #ef4444; }
+                .btn-icon.danger:hover { background: #fee2e2; color: #dc2626; }
+
+                .grid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+                .card-item { background: white; border: 1px solid #f3f4f6; border-radius: 16px; padding: 24px; transition: 0.3s; position: relative; overflow: hidden; }
+                .card-item:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); transform: translateY(-4px); border-color: var(--primary); }
+                .card-item.premium { border: 2px solid var(--primary); background: linear-gradient(to bottom right, #fffbeb, #fff); }
+                
+                .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+                .card-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+                .premium-icon { color: var(--primary); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+                
+                .card-actions { margin-top: 16px; pt: 16px; border-top: 1px solid #f3f4f6; }
+                .btn-outline { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #e5e7eb; background: white; font-weight: 600; cursor: pointer; transition: 0.2s; }
+                .btn-outline.success { border-color: var(--primary); color: #b45309; }
+                .btn-outline.success:hover { background: var(--primary); color: white; }
+                .btn-outline.danger { border-color: #ef4444; color: #ef4444; }
+                .btn-outline.danger:hover { background: #ef4444; color: white; }
+
+                .reviews-list { display: flex; flex-direction: column; gap: 16px; }
+                .review-item { padding: 20px; border: 1px solid #f3f4f6; border-radius: 16px; background: #f9fafb; }
+                .review-header { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; font-size: 0.9rem; }
+                .rating { color: #f59e0b; font-weight: 700; }
+                .restaurant-name { color: var(--text-muted); }
+                .review-text { font-style: italic; color: var(--text-dim); margin-bottom: 12px; line-height: 1.5; }
+                .btn-text { background: none; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; padding: 0; }
+                .btn-text.danger { color: #ef4444; }
+                .btn-text.danger:hover { text-decoration: underline; }
+
+                .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+                .badge.active { background: #dcfce7; color: #166534; }
+                .badge.inactive { background: #f3f4f6; color: #6b7280; }
+                
+                .money { font-family: monospace; font-weight: 600; color: var(--text-main); }
+                .btn-mini { padding: 4px 8px; border-radius: 6px; border: 1px solid #e5e7eb; background: white; font-size: 0.8rem; cursor: pointer; margin-right: 4px; }
+                .btn-mini:hover { background: #f9fafb; border-color: #d1d5db; }
+                .btn-mini.danger { color: #ef4444; border-color: #fee2e2; }
+                .btn-mini.danger:hover { background: #fef2f2; }
+
+                .spinner, .loading-screen { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-muted); font-weight: 500; }
+                .loading-screen { height: 100vh; font-size: 1.2rem; }
+
+                @media (max-width: 1024px) {
+                    .admin-container { flex-direction: column; }
+                    .admin-sidebar { width: 100%; height: auto; position: static; flex-direction: row; align-items: center; padding: 16px; border-right: none; border-bottom: 1px solid #eee; }
+                    .admin-nav { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
+                    .admin-nav button { white-space: nowrap; }
+                    .admin-logo { margin-bottom: 0; margin-right: 24px; }
+                    .admin-content { margin-left: 0; padding: 24px; }
+                    .admin-logout { margin-top: 0; border-top: none; padding-top: 0; margin-left: auto; }
+                }
+            `}</style>
         </div>
     );
 }
